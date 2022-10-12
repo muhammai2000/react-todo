@@ -1,10 +1,7 @@
- import React from "react"
-// // import './App.';
+import React from 'react'
 
 
-
-
-function App() {
+function List() {
     const [todos, setTodos] = React.useState([])
     const [todo, setTodo] = React.useState('')
     const [todoEditing, setTodoEditing] = React.useState(null)
@@ -68,34 +65,31 @@ function App() {
             setEditingText('')
         }
 
-        return (
-         <div className="App">
-            <form onSubmit={handleSubmit}>
-                <input type='text' onChange={(e) => setTodo(e.target.value)} value={todo} />
-                <button type='submit'>Add Todo</button>
-            </form>
-            {todos.map((todo) => <div key={todo.id}>
-
-                {todoEditing === todo.id ? 
-                (<input
-                type='text'    
-                onChange={(e) => setEditingText(e.target.value)} 
-                value= {editingText} 
-             />)
-                :       
-                (<div>{todo.text}</div>)}
-
-                <button onClick={() => deleteTodo(todo.id)}>Delete</button>
-                <input type='checkbox' onChange={() => toggleComplete(todo.id)}
-                checked={todo.completed} />
-
-                {todoEditing === todo.id ? (<button onClick={() => editTodo(todo.id)}
-                >Submit Edits</button>) : (<button onClick={() => setTodoEditing(todo.id)}>
-                    Edit Todo</button>)}
-             </div>)}
-         </div>
-    );
-}
 
 
-export default App;
+
+return(
+
+    {todos.map((todo) => <div key={todo.id}>
+
+    {todoEditing === todo.id ? 
+    (<input
+    type='text'    
+    onChange={(e) => setEditingText(e.target.value)} 
+    value= {editingText} 
+    />)
+    :       
+    (<div>{todo.text}</div>)}
+    
+    <button onClick={() => deleteTodo(todo.id)}>Delete</button>
+    <input type='checkbox' onChange={() => toggleComplete(todo.id)}
+    checked={todo.completed} />
+    
+    {todoEditing === todo.id ? (<button onClick={() => editTodo(todo.id)}
+    >Submit Edits</button>) : (<button onClick={() => setTodoEditing(todo.id)}>
+        Edit Todo</button>)}
+    </div>)}
+)
+
+
+export default List
